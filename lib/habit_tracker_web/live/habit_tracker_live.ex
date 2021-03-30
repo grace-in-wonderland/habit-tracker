@@ -13,26 +13,27 @@ defmodule HabitTrackerWeb.HabitTrackerLive do
     ~L"""
     <h1> Habit Tracker </h1>
     <%= inspect @marks %>
-    <ul class="weekdays">
-      <li>Su</li>
-      <li>Mo</li>
-      <li>Tu</li>
-      <li>We</li>
-      <li>Th</li>
-      <li>Fr</li>
-      <li>Sa</li>
-    </ul>
-    <ul class="days">
-    <%= for blank <- (0..@start-1) do %>
-    <li class="blank"></li>
-    <% end %>
-    <%= for date <- @days do %>
-    <li class="day <%=today?(date)%> <%=marked?(date, @marks)%>">
-    <a class="<%=marked?(date, @marks)%>" href="#" phx-click="mark" phx-value-date=<%=date%> >
-      <%=date.day%>
-      </a>
-      </li>
-    <% end %>
+    <div class="calendar">
+      <ul class="weekdays">
+        <li>Su</li>
+        <li>Mo</li>
+        <li>Tu</li>
+        <li>We</li>
+        <li>Th</li>
+        <li>Fr</li>
+        <li>Sa</li>
+      </ul>
+      <ul class="days">
+        <%= for blank <- (0..@start-1) do %>
+        <li class="blank"></li>
+        <% end %>
+        <%= for date <- @days do %>
+        <li class="day <%=today?(date)%> <%=marked?(date, @marks)%> <%=marked?(date, @marks)%>">
+        <a href="#" phx-click="mark" phx-value-date=<%=date%> > <%=date.day%> </a>
+        </li>
+        <% end %>
+      </ul>
+    </div>
     """
   end
 
